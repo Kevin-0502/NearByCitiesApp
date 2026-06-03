@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { useNearby } from '../context/NearbyContext';
 import LoadingView from '../components/LoadingView';
@@ -46,7 +46,7 @@ function CityPreviewCard({ city, onClose, onNavigate }) {
 }
 
 export default function NearbyMapScreen({ navigation }) {
-  const { cities, userLocation, loading, permissionDenied, noInternet, error, reload } = useNearby();
+  const { cities, userLocation, loading, refreshing, permissionDenied, noInternet, error, reload } = useNearby();
   const [selectedCity, setSelectedCity] = useState(null);
   const mapRef = useRef(null);
 
@@ -112,7 +112,10 @@ export default function NearbyMapScreen({ navigation }) {
 
       {/* Contador flotante */}
       <View style={styles.badge}>
-        <Text style={styles.badgeText}>📍 {cities.length} ciudades</Text>
+        {refreshing && <ActivityIndicator size="small" color="#fff" style={styles.badgeSpinner} />}
+        <Text style={styles.badgeText}>
+          {refreshing ? 'Actualizando...' : `📍 ${cities.length} ciudades`}
+        </Text>
       </View>
 
       {/* Botón centrar en ubicación */}
@@ -231,10 +234,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 14,
     alignSelf: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
     backgroundColor: 'rgba(26,115,232,0.92)',
     paddingHorizontal: 16,
     paddingVertical: 7,
     borderRadius: 20,
+    gap: 6,
   },
+  badgeSpinner: {},
   badgeText: { color: '#fff', fontWeight: '600', fontSize: 13 },
 });

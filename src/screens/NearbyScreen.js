@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, FlatList, Text, StyleSheet, RefreshControl } from 'react-native';
+import { View, FlatList, Text, StyleSheet, RefreshControl, ActivityIndicator } from 'react-native';
 import { useNearby } from '../context/NearbyContext';
 import CityCard from '../components/CityCard';
 import LoadingView from '../components/LoadingView';
@@ -9,7 +9,7 @@ import ErrorView from '../components/ErrorView';
 import { haversineDistance, formatDistance } from '../utils/distance';
 
 export default function NearbyScreen({ navigation }) {
-  const { cities, userLocation, loading, permissionDenied, noInternet, error, reload } = useNearby();
+  const { cities, userLocation, loading, refreshing: locationRefreshing, permissionDenied, noInternet, error, reload } = useNearby();
   const [refreshing, setRefreshing] = useState(false);
 
   const retry = () => reload();
@@ -32,7 +32,14 @@ export default function NearbyScreen({ navigation }) {
           <Text style={styles.locationText}>
             📍 {userLocation.latitude.toFixed(4)}, {userLocation.longitude.toFixed(4)}
           </Text>
-          <Text style={styles.locationCount}>{cities.length} ciudades encontradas</Text>
+          <View style={styles.locationRight}>
+            {locationRefreshing && (
+              <ActivityIndicator size="small" color="rgba(255,255,255,0.9)" style={styles.locationSpinner} />
+            )}
+            <Text style={styles.locationCount}>
+              {locationRefreshing ? 'Actualizando...' : `${cities.length} ciudades`}
+            </Text>
+          </View>
         </View>
       )}
 
@@ -91,6 +98,8 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   locationText: { fontSize: 12, color: 'rgba(255,255,255,0.9)', fontFamily: 'monospace' },
+  locationRight: { flexDirection: 'row', alignItems: 'center', gap: 6 },
+  locationSpinner: { marginRight: 2 },
   locationCount: { fontSize: 12, color: 'rgba(255,255,255,0.75)' },
 
   listContent: { paddingTop: 10, paddingBottom: 24 },
