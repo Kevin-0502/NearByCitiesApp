@@ -1,4 +1,4 @@
-# Desafío 03 — Explorador de Países y Ciudades Cercanas
+Explorador de Países y Ciudades Cercanas
 
 Aplicación móvil desarrollada con **React Native + Expo SDK 54** que combina dos flujos principales: exploración de países del mundo organizados por continente, y descubrimiento de ciudades cercanas a la ubicación del usuario con información del clima en tiempo real.
 
