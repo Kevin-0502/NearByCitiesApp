@@ -27,7 +27,7 @@
       "permissions": ["android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_COARSE_LOCATION"],
       "config": {
         "googleMaps": {
-          "apiKey": "AIzaSyDnPbjA2pjSpNfB8SfAkiYZt3Yf9FFK244"
+          "apiKey": ""
         }
       }
     },
