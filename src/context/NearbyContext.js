@@ -5,7 +5,7 @@ import { haversineDistance } from '../utils/distance';
 
 const NearbyContext = createContext(null);
 
-const REFETCH_THRESHOLD_KM = 0.5;
+const REFETCH_THRESHOLD_KM = 0.05;
 
 const isNetworkError = (err) =>
   err instanceof TypeError ||
