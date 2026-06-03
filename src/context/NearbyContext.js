@@ -32,7 +32,7 @@ export function NearbyProvider({ children }) {
       setError(null);
       setNoInternet(false);
 
-      const data = await fetchNearbyCities(latitude, longitude, 25);
+      const data = await fetchNearbyCities(latitude, longitude, 10);
       setCities(data);
       lastFetchCoordsRef.current = { latitude, longitude };
     } catch (err) {

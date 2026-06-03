@@ -211,3 +211,5 @@ El estado del módulo Nearby vive en `NearbyContext`. Los datos se cargan **una 
 | `expo-location` | 19.0.x | Acceso al GPS del dispositivo |
 | `react-native-reanimated` | 4.1.x | Animaciones (requerido por Navigation) |
 | `react-native-gesture-handler` | 2.28.x | Gestos (requerido por Navigation) |
+
+![alt text](<WhatsApp Image 2026-06-03 at 14.35.45.jpeg>) ![alt text](<WhatsApp Image 2026-06-03 at 14.35.45 (1).jpeg>) ![alt text](<WhatsApp Image 2026-06-03 at 14.35.45 (2).jpeg>)
